@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to ascii art web mandatory">
+    <title>ASCII ART WEB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #333;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            margin: 0 auto;
+            width: 80%;
+            height: 50%;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        fieldset {
+            border: none;
+            padding: 10px;
+        }
+
+        legend {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            margin: 5px 0;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/asci-art" method="POST">
+            <fieldset>
+                <legend>ASCII ART WEB</legend>
+                <label for="str-input"> Enter text: </label>
+                <input type="text" id="str-input" name="input" placeholder="Enter your string" required> </br>
+                <label for="banner">Choose a banner:</label> </br>
+                <input type="radio" id="banner" name="banner" value="standard" checked> standard </br>
+                <input type="radio" id="banner" name="banner" value="shadow" > shadow </br>
+                <input type="radio" id="banner" name="banner" value="thinkertoy" > thinkertoy </br>
+                <button type="submit">submit</button>
+                <button type="reset">Reset</button>
+            </fieldset> 
+        </form>
+    </div>
+</body>
+</html>
