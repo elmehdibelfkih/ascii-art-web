@@ -1,19 +1,14 @@
 package main
 
 import (
-	// "io"
+	"ascii-art-web/internal"
 	"fmt"
 	"net/http"
-	// "strings"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "./templates/index.html")
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-	fmt.Println("is 8080 serv now")
+	http.HandleFunc("/", internal.RootHandler)
+	http.HandleFunc("/ascii-art", internal.AsciiArtHandler)
+	fmt.Println("Server is running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
-
 }
