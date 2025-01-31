@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to ASCII Art Web">
+    <title>ASCII ART WEB</title>
+    <link rel="stylesheet" href="../static/index.css">
+</head>
+
+<body>
+    <h1>ASCII ART WEB</h1>
+    <div class="container">
+        <form action="/ascii-art" method="POST">
+            <fieldset>
+                <legend>ASCII ART WEB</legend>
+                <label for="str-input"> Enter text: </label>
+                <input type="text" id="str-input" name="inputText" placeholder="Enter your string" required>
+                
+                <label for="banner">Choose a banner:</label>
+                <div>
+                    <input type="radio" id="standard" name="banner" value="standard" checked>
+                    <label for="standard">Standard</label>
+                </div>
+                <div>
+                    <input type="radio" id="shadow" name="banner" value="shadow">
+                    <label for="shadow">Shadow</label>
+                </div>
+                <div>
+                    <input type="radio" id="thinkertoy" name="banner" value="thinkertoy">
+                    <label for="thinkertoy">Thinkertoy</label>
+                </div>
+                
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </fieldset> 
+        </form>
+    </div>
+</body>
+
+</html>

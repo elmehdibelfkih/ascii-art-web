@@ -8,17 +8,6 @@ import (
 	"strings"
 )
 
-var Font = make(map[rune][]string, 95)
-
-type Art struct {
-	Lines []string
-}
-
-const CharacterHeight = 8
-const STANDARD_HASH = "ac85e83127e49ec42487f272d9b9db8b"
-const SHADOW_HASH = "a49d5fcb0d5c59b2e77674aa3ab8bbb1"
-const THINKERTOY_HASH = "86d9947457f6a41a18cb98427e314ff8"
-
 func ParsFile(fontFileName string, font string) error {
 	data, err := os.ReadFile(fontFileName + font + ".txt")
 	if err != nil {
@@ -82,5 +71,6 @@ func StringAscii(str string) Art {
 			ret.Lines = append(ret.Lines, "\n")
 		}
 	}
+	ret.Title = "ASCII ART WEB"
 	return ret
 }
