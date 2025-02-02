@@ -4,13 +4,16 @@ import (
 	"ascii-art-web/internal"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	// http.HandleFunc()
 	http.HandleFunc("/", internal.RootHandler)
 	http.HandleFunc("/ascii-art", internal.AsciiArtHandler)
 	fmt.Println("Server is running on http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+	}
 }

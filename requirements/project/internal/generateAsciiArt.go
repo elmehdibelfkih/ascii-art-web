@@ -47,15 +47,15 @@ func ParsFile(fontFileName string, font string) error {
 func StringAscii(str string) Art {
 	ret := Art{}
 
-	if strings.ReplaceAll(str, `\n`, "") == "" {
-		counter := strings.Count(str, `\n`)
+	if strings.ReplaceAll(str, "\n", "") == "" {
+		counter := strings.Count(str, "\n")
 		fmt.Print(strings.Repeat("\n", counter))
 		for i := 0; i < counter; i++ {
 			ret.Lines = append(ret.Lines, "\n")
 		}
 		return ret
 	}
-	tmp := strings.Split(str, `\n`)
+	tmp := strings.Split(str, "\n")
 	for _, line := range tmp {
 		if line != "" {
 			for i := 0; i < CharacterHeight; i++ {

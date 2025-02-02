@@ -30,6 +30,8 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		error.InternalServerError(w, r)
 		return
 	}
+	// println(inputText)
+	// inputText = strings.Replace(inputText, "\n", "\\n", -1)
 	toPrint = StringAscii(inputText)
 	AsciiArtTmpl.Execute(w, toPrint)
 }
