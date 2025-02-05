@@ -1,7 +1,9 @@
 package error
 
-import "net/http"
-import "html/template"
+import (
+	"html/template"
+	"net/http"
+)
 
 type Error struct {
 	StatusCode       int
@@ -59,4 +61,16 @@ func InternalServerError(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(internalServerError.StatusCode)
 	ErrorTmpl.Execute(w, internalServerError)
+}
+
+func BadRequest(w http.ResponseWriter, r *http.Request) {
+	badRequest := Error{
+		StatusCode:       400,
+		StatusText:       "Bad Request",
+		ErrorMessage:     "The Server recieved a Bad request!!",
+		ErrorTitle:       "Oops! Bad Request",
+		ErrorDescription: "Please make sure you respect the input limits",
+	}
+	w.WriteHeader(badRequest.StatusCode)
+	ErrorTmpl.Execute(w, badRequest)
 }

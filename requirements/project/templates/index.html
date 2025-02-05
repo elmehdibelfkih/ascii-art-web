@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to ASCII Art Web">
     <title>ASCII ART WEB</title>
-    <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="/static/counter.js" defer></script>
 </head>
 
 <body>
     <h1>ASCII ART WEB</h1>
     <div class="container">
         <form action="/ascii-art" method="POST">
-            <fieldset>
+
                 <legend>ASCII ART WEB</legend>
-                <label for="str-input"> Enter text: </label>
-                <textarea type="text" id="str-input" name="inputText" placeholder="Enter your string" required> </textarea> <br>
+                <label for="str-input"> Enter text: <div class="counter" id="inputCounter">0 characters</div></label> <!-- 0 characters is the intial state-->
+                
+                <textarea class="fixed-textarea" maxlength="100" type="text" id="str-input" name="inputText" placeholder="Maximum number of characters is 100" required></textarea> <br>
                 
                 <label for="banner">Choose a banner:</label>
                 <div>
@@ -34,7 +36,7 @@
                 
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
-            </fieldset> 
+
         </form>
     </div>
 </body>

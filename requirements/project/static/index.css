@@ -1,4 +1,5 @@
 body {
+    
     font-family: Arial, sans-serif;
     background-color: #121212;
     color: #ddd;
@@ -32,6 +33,12 @@ form {
     flex-direction: column;
 }
 
+.fixed-textarea {
+    width: 100%;
+    height: 150px;  
+    resize: none;  
+}
+
 fieldset {
     border: none;
     padding: 0;
@@ -45,6 +52,7 @@ legend {
 }
 
 label {
+    position: relative;
     font-size: 1rem;
     font-weight: bold;
     color: #ccc;
@@ -80,3 +88,17 @@ button {
 button:hover {
     background-color: #555;
 }
+
+.counter {
+    position: absolute;
+    top: 0px;       
+    right: 10px;        
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+@media (max-width: 400px) {
+    .fixed-textarea {
+      width: 100%;
+    }
+}  
