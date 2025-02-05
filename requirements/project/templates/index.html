@@ -7,7 +7,7 @@
     <meta name="description" content="Welcome to ASCII Art Web">
     <title>ASCII ART WEB</title>
     <link rel="stylesheet" href="/static/index.css">
-    <script src="/static/counter.js" defer></script>
+    
 </head>
 
 <body>
@@ -36,7 +36,15 @@
                 
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
+                <script>
+                    const textArea = document.getElementById('str-input');
+                    const inputCounter = document.getElementById('inputCounter');
 
+                    textArea.addEventListener('input',function() {
+                        const counter = textArea.value.length;
+                        inputCounter.textContent = `${counter} character${counter !==1 ? 's' : ''}`
+                    });
+                </script>
         </form>
     </div>
 </body>
