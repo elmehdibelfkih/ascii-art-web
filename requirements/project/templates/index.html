@@ -13,12 +13,12 @@
 <body>
     <h1>ASCII ART WEB</h1>
     <div class="container">
-        <form action="/ascii-art" method="POST">
+        <form method="POST">
 
                 <legend>ASCII ART WEB</legend>
                 <label for="str-input"> Enter text: <div class="counter" id="inputCounter">0 characters</div></label> <!-- 0 characters is the intial state-->
                 
-                <textarea class="fixed-textarea" maxlength="100" type="text" id="str-input" name="inputText" placeholder="Maximum number of characters is 100" required></textarea> <br>
+                <textarea class="fixed-textarea" maxlength="100" type="text" id="str-input" name="before-generate" placeholder="Maximum number of characters is 100" required></textarea> <br>
                 
                 <label for="banner">Choose a banner:</label>
                 <div>
@@ -33,8 +33,10 @@
                     <input type="radio" id="thinkertoy" name="banner" value="thinkertoy">
                     <label for="thinkertoy">Thinkertoy</label>
                 </div>
+
+                <button formaction="/ascii-art" type="submit">Submit</button>
+                <button formaction="/export" type="submit">Export</button>
                 
-                <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
                 <script>
                     const textArea = document.getElementById('str-input');

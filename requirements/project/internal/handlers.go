@@ -1,14 +1,16 @@
 package internal
 
 import (
-	"ascii-art-web/error"
 	"fmt"
 	"html/template"
 	"net/http"
 	"os"
+	"strconv"
+
+	"ascii-art-web/error"
 )
 
-const maxCommentLength = 200
+const MAXINPUTLENGTH = 200
 
 var AsciiArtTmpl = template.Must(template.ParseFiles("./templates/asciiArt.html"))
 
@@ -18,13 +20,13 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	err := r.ParseForm()
-
 	if err != nil {
 		error.InternalServerError(w, r)
 		return
 	}
-	inputText := r.FormValue("inputText")
-	if len(inputText) > maxCommentLength {
+
+	inputText := r.FormValue("before-generate")
+	if len(inputText) > MAXINPUTLENGTH {
 		error.BadRequest(w, r)
 		return
 	}
@@ -34,7 +36,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if inputText == "" || banner == "" {
-		error.NotContainTheRequiredData(w, r)
+		error.BadRequest(w, r)
 		return
 	}
 	var toPrint Art
@@ -81,18 +83,48 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ExportHandler(w http.ResponseWriter, r *http.Request) {
-	asciiArt := r.FormValue("ascii")
-	fmt.Println(asciiArt)
+	before_generate := r.FormValue("before-generate")
+	after_generate := r.FormValue("after-generate")
+	banner := r.FormValue("banner")
 
-	rtfContent := fmt.Sprintf(`{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0\fs24%s}`, asciiArt)
-	fmt.Print(rtfContent)
+	var asciiStruct Art
+	var ascii string
 
-	// w.Header().Set("Content-Length", strconv.Itoa(len(asciiArt)))
-	w.Header().Set("Content-Type", "application/rtf")
-	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.rtf")
+	err := r.ParseForm()
+	if err != nil {
+		error.InternalServerError(w, r)
+		return
+	}
 
-	// // Write the RTF content to the response.
-	fmt.Fprint(w, rtfContent)
+	if len(before_generate) > MAXINPUTLENGTH || len(after_generate) > MAXINPUTLENGTH {
+		error.BadRequest(w, r)
+		return
+	}
+
+	if len(before_generate) == 0 && len(after_generate) == 0 {
+		error.BadRequest(w, r)
+		return
+	}
+
+	if len(after_generate) == 0 {
+		ParsFile(BANNERS_PATH, banner)
+		if !isBanner(banner) {
+			error.BadRequest(w, r)
+		}
+		asciiStruct = StringAscii(before_generate)
+		ascii = asciiStruct.Lines
+	} else {
+		ascii = after_generate
+	}
+	// rtfContent := fmt.Sprintf(`{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0\fs24%s}`, ascii)
+	// fmt.Println(rtfContent)
+
+	w.Header().Set("Content-Length", strconv.Itoa(len(ascii)))
+	w.Header().Set("Content-Type", "text/plain")
+	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.txt")
+
+	// fmt.Println(w)
+	fmt.Fprint(w, ascii)
 }
 
 func isBanner(banner string) bool { // Avoid an internal server error crash

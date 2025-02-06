@@ -49,9 +49,10 @@ func StringAscii(str string) Art {
 
 	if strings.ReplaceAll(str, "\n", "") == "" {
 		counter := strings.Count(str, "\n")
-		fmt.Print(strings.Repeat("\n", counter))
+		// fmt.Print(strings.Repeat("\n", counter))
 		for i := 0; i < counter; i++ {
-			ret.Lines = append(ret.Lines, "\n")
+			// ret.Lines = append(ret.Lines, "\n")
+			ret.Lines += "\n"
 		}
 		return ret
 	}
@@ -65,12 +66,15 @@ func StringAscii(str string) Art {
 						tmpLine += Font[c][i]
 					}
 				}
-				ret.Lines = append(ret.Lines, tmpLine+"\n")
+				// ret.Lines = append(ret.Lines, tmpLine+"\n")
+				ret.Lines += tmpLine + "\n"
 			}
 		} else {
-			ret.Lines = append(ret.Lines, "\n")
+			// ret.Lines = append(ret.Lines, "\n")
+			ret.Lines += "\n"
 		}
 	}
+	// fmt.Printf("%#v \n", ret.Lines)
 	ret.Title = "ASCII ART WEB"
 	return ret
 }

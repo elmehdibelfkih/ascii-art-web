@@ -39,17 +39,17 @@ func MethodNotAllowed(w http.ResponseWriter, r *http.Request) {
 	ErrorTmpl.Execute(w, methodNotAllowed)
 }
 
-func NotContainTheRequiredData(w http.ResponseWriter, r *http.Request) {
-	notContainTheRequiredData := Error{
-		StatusCode:       400,
-		StatusText:       "Bad Request",
-		ErrorMessage:     "The request is missing required data or is improperly formatted.",
-		ErrorTitle:       "Oops! no data",
-		ErrorDescription: "Please ensure you include all necessary fields in the request body and send a properly formatted JSON payload.",
-	}
-	w.WriteHeader(notContainTheRequiredData.StatusCode)
-	ErrorTmpl.Execute(w, notContainTheRequiredData)
-}
+// func NotContainTheRequiredData(w http.ResponseWriter, r *http.Request) {
+// 	notContainTheRequiredData := Error{
+// 		StatusCode:       400,
+// 		StatusText:       "Bad Request",
+// 		ErrorMessage:     "The request is missing required data or is improperly formatted.",
+// 		ErrorTitle:       "Oops! no data",
+// 		ErrorDescription: "Please ensure you include all necessary fields in the request body and send a properly formatted JSON payload.",
+// 	}
+// 	w.WriteHeader(notContainTheRequiredData.StatusCode)
+// 	ErrorTmpl.Execute(w, notContainTheRequiredData)
+// }
 
 func InternalServerError(w http.ResponseWriter, r *http.Request) {
 	internalServerError := Error{
