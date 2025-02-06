@@ -2,6 +2,7 @@ package internal
 
 import (
 	"ascii-art-web/error"
+	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -77,6 +78,21 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	http.ServeFile(w, r, r.URL.Path[1:])
+}
+
+func ExportHandler(w http.ResponseWriter, r *http.Request) {
+	asciiArt := r.FormValue("ascii")
+	fmt.Println(asciiArt)
+
+	rtfContent := fmt.Sprintf(`{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0\fs24%s}`, asciiArt)
+	fmt.Print(rtfContent)
+
+	// w.Header().Set("Content-Length", strconv.Itoa(len(asciiArt)))
+	w.Header().Set("Content-Type", "application/rtf")
+	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.rtf")
+
+	// // Write the RTF content to the response.
+	fmt.Fprint(w, rtfContent)
 }
 
 func isBanner(banner string) bool { // Avoid an internal server error crash
