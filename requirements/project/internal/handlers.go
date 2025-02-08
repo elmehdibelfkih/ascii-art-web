@@ -96,7 +96,7 @@ func ExportHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if len(before_generate) > MAXINPUTLENGTH || len(after_generate) > MAXINPUTLENGTH {
+	if len(before_generate) > MAXINPUTLENGTH {
 		error.BadRequest(w, r)
 		return
 	}
