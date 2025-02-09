@@ -42,7 +42,7 @@ Follow these steps to install and set up the project:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/ascii-art-web.git
+    git clone https://github.com/elmehdibelfkih/ascii-art-web.git
     ```
 
 2. Navigate into the project directory:
@@ -56,8 +56,9 @@ Follow these steps to install and set up the project:
 For Docker setup:
 
 # Build and run the container
+1. run container
     ```sh
-    docker-compose up
+    docker compose up
     ```
 ## Usage
 
