@@ -5,7 +5,7 @@
 - Larbi Mergaoui
 - Said Oubaaisse
 
-## Description
+###### Description
 
 **ascii-art-web** is a project related to ASCII art! The purpose of this project is to run a basic server from the terminal on localhost. It uses a basic REST API with HTTP GET and POST requests and dynamic HTML page templates.
 
