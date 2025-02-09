@@ -2,17 +2,12 @@ package internal
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 	"os"
 	"strconv"
 
 	"ascii-art-web/error"
 )
-
-const MAXINPUTLENGTH = 200
-
-var AsciiArtTmpl = template.Must(template.ParseFiles("./templates/asciiArt.html"))
 
 func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -116,14 +111,10 @@ func ExportHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		ascii = after_generate
 	}
-	// rtfContent := fmt.Sprintf(`{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0\fs24%s}`, ascii)
-	// fmt.Println(rtfContent)
 
 	w.Header().Set("Content-Length", strconv.Itoa(len(ascii)))
 	w.Header().Set("Content-Type", "text/plain")
 	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.txt")
-
-	// fmt.Println(w)
 	fmt.Fprint(w, ascii)
 }
 

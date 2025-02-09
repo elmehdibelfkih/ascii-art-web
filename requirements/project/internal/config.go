@@ -1,11 +1,15 @@
 package internal
 
+import "html/template"
+
 const (
 	INDEX_TEMPLATE_PATH = "./templates/index.html"
 	BANNERS_PATH        = "./banners/"
+	MAXINPUTLENGTH      = 200
 )
 
 var Font = make(map[rune][]string, 95)
+var AsciiArtTmpl = template.Must(template.ParseFiles("./templates/asciiArt.html"))
 
 type Art struct {
 	Title string
