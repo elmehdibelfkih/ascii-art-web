@@ -26,11 +26,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	banner := r.FormValue("banner")
-	if !isBanner(banner) {
-		error.BadRequest(w, r)
-		return
-	}
-	if inputText == "" || banner == "" {
+	if !isBanner(banner) || inputText == "" || banner == "" {
 		error.BadRequest(w, r)
 		return
 	}
@@ -41,7 +37,11 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	toPrint = StringAscii(inputText)
-	AsciiArtTmpl.Execute(w, toPrint)
+	err3 := ASCIIARTTMPL.Execute(w, toPrint)
+	if err3 != nil {
+		error.InternalServerError(w, r)
+		return
+	}
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
@@ -116,14 +116,4 @@ func ExportHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain")
 	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.txt")
 	fmt.Fprint(w, ascii)
-}
-
-func isBanner(banner string) bool { // Avoid an internal server error crash
-	banners := []string{"standard", "shadow", "thinkertoy"}
-	for _, v := range banners {
-		if v == banner {
-			return true
-		}
-	}
-	return false
 }

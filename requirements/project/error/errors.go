@@ -13,7 +13,7 @@ type Error struct {
 	ErrorDescription string
 }
 
-var ErrorTmpl = template.Must(template.ParseFiles("./templates/error.html"))
+var ERRORTMPL *template.Template
 
 func NotFoundError(w http.ResponseWriter, r *http.Request) {
 	notFoundError := Error{
@@ -24,7 +24,7 @@ func NotFoundError(w http.ResponseWriter, r *http.Request) {
 		ErrorDescription: "We couldn't find the page you were looking for. Please check the URL for any mistakes or go back to the homepage.",
 	}
 	w.WriteHeader(notFoundError.StatusCode)
-	ErrorTmpl.Execute(w, notFoundError)
+	ERRORTMPL.Execute(w, notFoundError)
 }
 
 func MethodNotAllowed(w http.ResponseWriter, r *http.Request) {
@@ -36,7 +36,7 @@ func MethodNotAllowed(w http.ResponseWriter, r *http.Request) {
 		ErrorDescription: "Please send a POST request to this endpoint with the required data for processing. Other HTTP methods are not allowed.",
 	}
 	w.WriteHeader(methodNotAllowed.StatusCode)
-	ErrorTmpl.Execute(w, methodNotAllowed)
+	ERRORTMPL.Execute(w, methodNotAllowed)
 }
 
 func InternalServerError(w http.ResponseWriter, r *http.Request) {
@@ -48,7 +48,7 @@ func InternalServerError(w http.ResponseWriter, r *http.Request) {
 		ErrorDescription: "Something went wrong on our end. Please try again later or contact support if the issue persists.",
 	}
 	w.WriteHeader(internalServerError.StatusCode)
-	ErrorTmpl.Execute(w, internalServerError)
+	ERRORTMPL.Execute(w, internalServerError)
 }
 
 func BadRequest(w http.ResponseWriter, r *http.Request) {
@@ -60,5 +60,5 @@ func BadRequest(w http.ResponseWriter, r *http.Request) {
 		ErrorDescription: "Please make sure you respect the input limits",
 	}
 	w.WriteHeader(badRequest.StatusCode)
-	ErrorTmpl.Execute(w, badRequest)
+	ERRORTMPL.Execute(w, badRequest)
 }

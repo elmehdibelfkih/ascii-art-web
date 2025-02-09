@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	internal.CreateTemplates()
 	http.HandleFunc("/static/", internal.StaticHandler)
 	http.HandleFunc("/", internal.RootHandler)
 	http.HandleFunc("/ascii-art", internal.AsciiArtHandler)

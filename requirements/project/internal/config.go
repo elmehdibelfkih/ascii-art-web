@@ -12,8 +12,8 @@ const (
 	BANNERS_PATH        = "./banners/"
 )
 
-var Font = make(map[rune][]string, 95)
-var AsciiArtTmpl = template.Must(template.ParseFiles("./templates/asciiArt.html"))
+var FONT = make(map[rune][]string, 95)
+var ASCIIARTTMPL *template.Template
 
 type Art struct {
 	Title string

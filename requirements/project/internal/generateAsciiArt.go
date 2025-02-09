@@ -27,7 +27,7 @@ func ParsFile(fontFileName string, font string) error {
 		str := strings.Trim(string(data), "\n")
 		tmp := strings.Split(str, "\n\n")
 		for i, j := 32, 0; i <= 126; i++ {
-			Font[rune(i)] = strings.Split(tmp[j], "\n")
+			FONT[rune(i)] = strings.Split(tmp[j], "\n")
 			j++
 		}
 	} else if font == "thinkertoy" {
@@ -37,7 +37,7 @@ func ParsFile(fontFileName string, font string) error {
 		str := strings.Trim(string(data), "\r\n")
 		tmp := strings.Split(str, "\r\n\r\n")
 		for i, j := 32, 0; i <= 126; i++ {
-			Font[rune(i)] = strings.Split(tmp[j], "\r\n")
+			FONT[rune(i)] = strings.Split(tmp[j], "\r\n")
 			j++
 		}
 	}
@@ -60,8 +60,8 @@ func StringAscii(str string) Art {
 			for i := 0; i < CharacterHeight; i++ {
 				tmpLine := ""
 				for _, c := range line {
-					if c < 127 && c > 31 && i < len(Font[c]) {
-						tmpLine += Font[c][i]
+					if c < 127 && c > 31 && i < len(FONT[c]) {
+						tmpLine += FONT[c][i]
 					}
 				}
 				ret.Lines += tmpLine + "\n"
