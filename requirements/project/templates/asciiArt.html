@@ -11,17 +11,23 @@
 <body>
     <div class="terminal">
         <pre>{{.Lines}}</pre>
+
+
+
+        
     </div>
     <br>
-
-    <form action="/export">
+    <div class="buttons">
+        <form action="/export">
         <textarea hidden name="after-generate" readonly>{{.Lines}}</textarea>
         <button type="submit" class="home-button">Export</button>
-    </form>
+        </form>
     
-    <div>
-        <a href="/" class="home-button">Another One?</a>
+        <div>
+            <a href="/" class="home-button">Another One?</a>
+        </div>
     </div>
+    
 </body>
 
 </html>

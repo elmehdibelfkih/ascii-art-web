@@ -2,7 +2,7 @@ package internal
 
 import "html/template"
 
-const (
+const ( // 
 	CharacterHeight     = 8
 	MAXINPUTLENGTH      = 200
 	STANDARD_HASH       = "ac85e83127e49ec42487f272d9b9db8b"
