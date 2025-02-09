@@ -5,7 +5,7 @@
 - Larbi Mergaoui
 - Said Oubaaisse
 
-###### Description
+### Description
 
 **ascii-art-web** is a project related to ASCII art! The purpose of this project is to run a basic server from the terminal on localhost. It uses a basic REST API with HTTP GET and POST requests and dynamic HTML page templates.
 
@@ -15,7 +15,7 @@
 - The server will process the input and respond with a dynamic ASCII art representation of the requested text.
 
 ### Project Structure
->>> JDJ <<<DJDJDJ>>>
+
 #### requirements
 - **banners**: This folder contains `file.txt`, which includes ASCII characters (32 -> 126) in different formats: `standard`, `shadow`, and `thinkertoy`. This file is used to fetch the alphabet based on the client's choice.
 - **error**: This folder contains functions that serve HTTP error responses and status codes. The error responses are generated dynamically using templates.
