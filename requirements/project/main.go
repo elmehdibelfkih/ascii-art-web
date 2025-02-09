@@ -9,8 +9,6 @@ import (
 )
 
 func main() {
-	// http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-
 	http.HandleFunc("/static/", internal.StaticHandler)
 	http.HandleFunc("/", internal.RootHandler)
 	http.HandleFunc("/ascii-art", internal.AsciiArtHandler)

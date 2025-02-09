@@ -5,15 +5,4 @@ services:
     build: ./requirements/.
     ports:
       - "8080:8080"
-    volumes:
-      - ascii-data:/home/ebelfkih/data/ascii
     restart: unless-stopped
-
-volumes:
-  ascii-data:
-    name: ascii-data
-    driver: local
-    driver_opts:
-      device: /home/ebelfkih/data/ascii
-      o: bind
-      type: none
