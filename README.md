@@ -10,7 +10,7 @@
 **ascii-art-web** is a project related to ASCII art! The purpose of this project is to run a basic server from the terminal on localhost. It uses a basic REST API with HTTP GET and POST requests and dynamic HTML page templates.
 
 ### How it Works
-- On the client side, a user can enter text in a text bar and click "submit." The browser sends an HTTP GET request to the server.
+- On the client side, a user can enter text in a text bar and click "submit." The browser sends an HTTP POST request to the server.
 - On the server side, the server handles the request and returns an HTML page containing the text in ASCII art format.
 - The server will process the input and respond with a dynamic ASCII art representation of the requested text.
 
@@ -55,7 +55,7 @@ Follow these steps to install and set up the project:
     ```
 For Docker setup:
 
-# Build and run the container
+## Build and run the container
 1. run container
     ```sh
     docker compose up
