@@ -1,124 +1,64 @@
-# GIT
+# ascii-art-web
 
-git is a project based on solving a series of task and include your feedback
+## Members
+- El Mehdi Belfkih
+- Larbi Mergaoui
+- Said Oubaaisse
 
-##  Set up git on your local machine 
-    install git on your local machine [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+## Description
 
-## Configure git with username and email address
-    + Open the command line
-    + Set up your username:
-        ```bash
-            git config --global user.name "EXAMPLE_NAME"
-        ```
-    + Set up your address:
-        ```bash
-            git config --global user.email "FULL_NAME@example.com"
-        ```
-    + Save credentials in plaintext on your local machine
-        - Run:
-            ```bash
-                git config --global credential.helper store
-            ```
-        - Verify:
-            ```bash
-                git config --global credential.helper
-            ```
-            you should get :
-                ```bash
-                    store
-                ```
-        - Then:
-            ```bash
-                git pull
-            ```
-        - Enter your credentials for the last time and congrats you have saved your credentials.
+**ascii-art-web** is a project related to ASCII art! The purpose of this project is to run a basic server from the terminal on localhost. It uses a basic REST API with HTTP GET and POST requests and dynamic HTML page templates.
 
-## Git commits to commit
-    create work directory, establish a subdirectory named hello, inside hello create a file called hello.sh and input the following content:
-        echo "Hello, World"
-    in order to do that we should run the following commands
-    ```bash
-        mkdir -p work/hello
-    ```
-    then go to hello Dir
-    ```bash
-        cd hello
-    ```
-    ```bash
-        touch hello.sh
-    ```
-    use a text editor to edit hello.sh (Vscode in my example):
-    ```bash
-        code hello.sh
-    ```
-    navigate to hello directory and initialize the directory using the command git init:
-    ```bash
-        git init
-    ```
-    the ./git Dir is hidden by default the command **git init** display the path of the ./git Dir
-    chek status using **git status**:
-    ```bash
-        git status
-    ``` 
-    this command will tell you that there is no commits yet becuase the repo is brand new.
-    first we need to add hello.sh to track by simply:
-    ```bash
-        git add hello.sh
-    ``` 
-    we are going to add a "#!/bin/bash" to our hello.sh and commit changes:
-    ```bash
-        git commit -m "commit the changes of hello.sh"
-    ```
-    after trying using **git push** we failed  because we have to configure the push destinationb by the following commands:
-    ```bash
-        git remote add origin <url>
-    ```
-    then setting the upstram :
-    ```bash
-        git push --set-upsteream origin master
-    ```
-    or :
-    ```bash
-        git push -u origin master
-    ```
-    I repeated the same process to commit two separated commits you will discover why on the next session.
+### How it Works
+- On the client side, a user can enter text in a text bar and click "submit." The browser sends an HTTP GET request to the server.
+- On the server side, the server handles the request and returns an HTML page containing the text in ASCII art format.
+- The server will process the input and respond with a dynamic ASCII art representation of the requested text.
 
-## History
-    in order to show the history of the current working Dir:
-    ```bash
-        git log
+### Project Structure
+
+#### requirements
+- **banners**: This folder contains `file.txt`, which includes ASCII characters (32 -> 126) in different formats: `standard`, `shadow`, and `thinkertoy`. This file is used to fetch the alphabet based on the client's choice.
+- **error**: This folder contains functions that serve HTTP error responses and status codes. The error responses are generated dynamically using templates.
+- **internal**: This folder contains functions for configuring the server, which handles and processes client requests.
+
+#### static
+- This folder contains CSS files for styling the web page.
+
+#### templates
+- This folder contains dynamic HTML page templates. These templates inject the correct data and serve it to the client.
+
+#### main.go
+- The main function handles the core operations and starts the process of running the server.
+
+#### Dockerfile
+- The Dockerfile configures the image to run the container.
+
+#### docker-compose.yml
+- Docker Compose is used as a controller to help manage and run multiple containers easily.
+
+## Installation
+
+Follow these steps to install and set up the project:
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/ascii-art-web.git
     ```
-    use Ctrl+z to quit
-    Show One-Line History for a condensed view showing only commit hashes and messages:
-    ```bash
-        git log --oneline
+
+2. Navigate into the project directory:
+    ```sh
+    cd ascii-art-web
     ```
-    to customize the log output to show only the last 2 commits :
-    ```bash
-        git log --oneline -
+3. Run the Go server:
+    ```sh
+    go run main.go
     ```
-    to customize to view the commits made the last 5 minutes :
-    ```bash
-        git log --oneline -since="5 minutes ago"
+For Docker setup:
+
+# Build and run the container
+    ```sh
+    docker-compose up
     ```
-    Personalized Format:
-        use the following command ** git log --pretty=format:'%h %ad | %s (%d) [%an]' --date=short **
-        ```bash
-            git log --pretty=format:'%h %ad | %s (%d) [%an]' --date=short
-        ```
-        - h for hash
-        - ad for date --date=short is the format of the date
-        - s for the commit message
-        - d for the branch infos 
-        - an for author name
-# Check it out
-    in order to get the hash of the first commit you need to run the command **git rev-list --max-parents=0 HEAD**
-        ```bash
-            git rev-list --max-parents=0 HEAD
-        ```
-    after that use **git checkout <commit hash>** in my case [9c879256f](https://learn.zone01oujda.ma/git/mlarbi/git/commit/9c879256f57447028cdefa2c26a05bb9a02d150a):
-        ```bash
-            git checkout 9c879256f57447028cdefa2c26a05bb9a02d150a
-        ```
-    
+## Usage
+
+Once the server is running, open your browser and visit `http://localhost:8080`. You can input text and see it converted into ASCII art.
