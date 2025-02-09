@@ -1,4 +1,4 @@
-# ascii-art-web
+# Ascii-Art-Web
 
 ## Members
 - El Mehdi Belfkih
