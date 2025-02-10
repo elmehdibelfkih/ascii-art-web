@@ -9,24 +9,21 @@
 </head>
 
 <body>
+    <video autoplay muted loop class="video-bg" poster="/static/poster.png">
+        <source src="/static/vdbg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <div class="terminal">
         <pre>{{.Lines}}</pre>
-
-
-
-        
     </div>
     <br>
-    <div class="buttons">
         <form action="/export">
         <textarea hidden name="after-generate" readonly>{{.Lines}}</textarea>
-        <button type="submit" class="home-button">Export</button>
-        </form>
-    
-        <div>
+        <div class="buttons">
+            <button type="submit" class="home-button">Export</button><br>
             <a href="/" class="home-button">Another One?</a>
         </div>
-    </div>
+        </form>
     
 </body>
 

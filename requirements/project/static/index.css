@@ -1,8 +1,13 @@
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    object-fit: cover; 
+    z-index: -1; 
+}
+
 body {
-    background-image: url("bg.gif");
-    background-size: cover;
     font-family: Arial, sans-serif;
-    /* background-color: #121212; */
     color: #ddd;
     margin: 0;
     padding: 0;
@@ -98,8 +103,16 @@ button:hover {
     color: #bbb;
 }
 
-@media (max-width: 400px) {
-    .fixed-textarea {
-      width: 100%;
+@media(min-aspect-ratio: 16/9) {
+    .video-bg{
+        width: 100%;
+        height: auto;
     }
-}  
+}
+
+@media(max-aspect-ratio: 16/9) {
+    .video-bg{
+        width: auto;
+        height: 90%;
+    }
+}

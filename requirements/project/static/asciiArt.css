@@ -1,8 +1,13 @@
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    object-fit: cover; 
+    z-index: -1; 
+}
+
 body {
-    background-image: url("bg.gif");
-    background-size: cover;
     font-family: Arial, sans-serif;
-    /* background-color: #2d2d2d; */
     color: #f8f8f2;
     margin: 0;
     padding: 20px;
@@ -14,8 +19,19 @@ body {
     min-height: 100vh;
 }
 
-.buttons {
-    width: 20%;
+.buttons button{
+    width: 100%;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ffffff;
+}
+
+.buttons a{
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #ffffff;
 }
 
 
@@ -56,4 +72,30 @@ body {
     border-radius: 5px;
     text-decoration: none;
     transition: background 0.3s ease;
+}
+
+a:hover {
+    scale: 1.1;
+    background-color: #ffffff;
+    color: #1e1e1e;
+}
+
+button:hover {
+    scale: 1.1;
+    background-color: #ffffff;
+    color: #1e1e1e;
+}
+
+@media(min-aspect-ratio: 16/9) {
+    .video-bg{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media(max-aspect-ratio: 16/9) {
+    .video-bg{
+        width: auto;
+        height: 90%;
+    }
 }
