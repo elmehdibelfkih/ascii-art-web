@@ -1,12 +1,7 @@
-.video-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    object-fit: cover; 
-    z-index: -1; 
-}
 
 body {
+    background-image: url(https://as1.ftcdn.net/v2/jpg/00/58/06/10/1000_F_58061024_xqxZ7HnfKfTLqYIMgJcMODakUXyl4XUr.jpg);
+    background-size: cover;
     font-family: Arial, sans-serif;
     color: #e0e0e0;
     margin: 0;
