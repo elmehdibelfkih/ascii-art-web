@@ -2,17 +2,13 @@ package internal
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 
 	"ascii-art-web/error"
 )
-
-const MAXINPUTLENGTH = 200
-
-var AsciiArtTmpl = template.Must(template.ParseFiles("./templates/asciiArt.html"))
 
 func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -31,22 +27,27 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	banner := r.FormValue("banner")
-	if !isBanner(banner) {
-		error.BadRequest(w, r)
-		return
-	}
-	if inputText == "" || banner == "" {
+	if !isBanner(banner) || inputText == "" || banner == "" {
 		error.BadRequest(w, r)
 		return
 	}
 	var toPrint Art
-	err2 := ParsFile(BANNERS_PATH, banner)
-	if err2 != nil {
+	err = ParsFile(BANNERS_PATH, banner)
+	if err != nil {
 		error.InternalServerError(w, r)
 		return
 	}
-	toPrint = StringAscii(inputText)
-	AsciiArtTmpl.Execute(w, toPrint)
+	inputText = strings.Replace(inputText, "\r", "", -1)
+	if !ContainsAscii(inputText) {
+		toPrint = StringAscii("we accept just ASCII characters")
+	} else {
+		toPrint = StringAscii(inputText)
+	}
+	err = ASCIIARTTMPL.Execute(w, toPrint)
+	if err != nil {
+		error.InternalServerError(w, r)
+		return
+	}
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
@@ -116,23 +117,9 @@ func ExportHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		ascii = after_generate
 	}
-	// rtfContent := fmt.Sprintf(`{\rtf1\ansi{\fonttbl\f0\fswiss Helvetica;}\f0\fs24%s}`, ascii)
-	// fmt.Println(rtfContent)
 
 	w.Header().Set("Content-Length", strconv.Itoa(len(ascii)))
 	w.Header().Set("Content-Type", "text/plain")
 	w.Header().Set("Content-Disposition", "attachment; filename=ascii_art.txt")
-
-	// fmt.Println(w)
 	fmt.Fprint(w, ascii)
-}
-
-func isBanner(banner string) bool { // Avoid an internal server error crash
-	banners := []string{"standard", "shadow", "thinkertoy"}
-	for _, v := range banners {
-		if v == banner {
-			return true
-		}
-	}
-	return false
 }

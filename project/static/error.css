@@ -1,6 +1,7 @@
 body {
+    background-image: url(https://img.pikbest.com/backgrounds/20190725/retro-sci-fi-background-futuristic-grid-landscape-of-the-1980-background-v_1508384jpg!sw800);
+    background-size: cover;
     font-family: Arial, sans-serif;
-    background-color: #181818;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
@@ -18,7 +19,7 @@ body {
     background-color: #222;
     padding: 25px;
     border-radius: 12px;
-    border: 1px solid #00ff00;
+    border: 3px solid #74a0ff;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
@@ -60,7 +61,7 @@ ul {
 .error-code {
     font-size: 80px;
     font-weight: bold;
-    color: #00ff00;
+    color: #ff0000;
     margin-top: 30px;
 }
 
@@ -70,7 +71,7 @@ ul {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
-    color: #fff;
+    color: #74a0ff;
     background-color: #03254b;
     border: none;
     border-radius: 5px;
@@ -80,4 +81,56 @@ ul {
 
 .home-button:hover {
     background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .error-container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .error-title {
+        font-size: 24px;
+    }
+
+    .error-message {
+        font-size: 18px;
+    }
+
+    .error-description {
+        font-size: 14px;
+    }
+
+    .error-code {
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-container {
+        width: 75%;
+        padding: 15px;
+    }
+
+    .error-title {
+        font-size: 20px;
+    }
+
+    .error-message {
+        font-size: 16px;
+    }
+
+    .error-description {
+        font-size: 12px;
+    }
+
+    .error-code {
+        font-size: 50px;
+    }
+
+    .home-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
 }

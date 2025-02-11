@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/asciiArt.css">
+</head>
+
+<body>
+    <div class="terminal">
+        <pre>{{.Lines}}</pre>
+    </div>
+    <br>
+        <form action="/export">
+        <textarea hidden name="after-generate" readonly>{{.Lines}}</textarea>
+        <div class="buttons">
+            <button type="submit" class="home-button">Export</button><br>
+            <a href="/" class="home-button">Another One?</a>
+        </div>
+        </form>
+    
+</body>
+
+</html>
