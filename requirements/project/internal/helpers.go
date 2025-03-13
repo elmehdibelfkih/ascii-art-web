@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func isBanner(banner string) bool { // Avoid an internal server error crash
+func isBanner(banner string) bool {
 	banners := []string{"standard", "shadow", "thinkertoy"}
 	for _, v := range banners {
 		if v == banner {
@@ -27,4 +27,13 @@ func CreateTemplates() {
 		log.Fatal(err1)
 	}
 	error.ERRORTMPL = template.Must(tmpl1, err1)
+}
+
+func ContainsAscii(str string) bool {
+	for _, v := range str {
+		if (v < 32 || v > 126) && v != '\n' {
+			return false
+		}
+	}
+	return true
 }

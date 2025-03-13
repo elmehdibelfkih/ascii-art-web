@@ -1,11 +1,7 @@
-
 body {
-    background-image: url(https://as1.ftcdn.net/v2/jpg/00/58/06/10/1000_F_58061024_xqxZ7HnfKfTLqYIMgJcMODakUXyl4XUr.jpg);
+    background-image: url(https://img.pikbest.com/backgrounds/20190725/retro-sci-fi-background-futuristic-grid-landscape-of-the-1980-background-v_1508384jpg!sw800);
     background-size: cover;
     font-family: Arial, sans-serif;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +16,7 @@ body {
     background-color: #222;
     padding: 25px;
     border-radius: 12px;
-    border: 1px solid #ffffff;
+    border: 3px solid #74a0ff;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
@@ -72,28 +68,65 @@ ul {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
-    color: #fff;
+    color: #74a0ff;
     background-color: #03254b;
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    transition: background 0.3s ease;
 }
 
 .home-button:hover {
     background-color: #0056b3;
 }
 
-@media(min-aspect-ratio: 16/9) {
-    .video-bg{
-        width: 100%;
-        height: auto;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .error-container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .error-title {
+        font-size: 24px;
+    }
+
+    .error-message {
+        font-size: 18px;
+    }
+
+    .error-description {
+        font-size: 14px;
+    }
+
+    .error-code {
+        font-size: 60px;
     }
 }
 
-@media(max-aspect-ratio: 16/9) {
-    .video-bg{
-        width: auto;
-        height: 90%;
+@media (max-width: 480px) {
+    .error-container {
+        width: 75%;
+        padding: 15px;
+    }
+
+    .error-title {
+        font-size: 20px;
+    }
+
+    .error-message {
+        font-size: 16px;
+    }
+
+    .error-description {
+        font-size: 12px;
+    }
+
+    .error-code {
+        font-size: 50px;
+    }
+
+    .home-button {
+        font-size: 12px;
+        padding: 8px 16px;
     }
 }

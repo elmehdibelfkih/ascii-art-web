@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 
 	"ascii-art-web/error"
 )
@@ -21,6 +22,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	inputText := r.FormValue("before-generate")
+	inputText = strings.Replace(inputText, "\r", "", -1)
 	if len(inputText) > MAXINPUTLENGTH {
 		error.BadRequest(w, r)
 		return
@@ -31,14 +33,18 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var toPrint Art
-	err2 := ParsFile(BANNERS_PATH, banner)
-	if err2 != nil {
+	err = ParsFile(BANNERS_PATH, banner)
+	if err != nil {
 		error.InternalServerError(w, r)
 		return
 	}
-	toPrint = StringAscii(inputText)
-	err3 := ASCIIARTTMPL.Execute(w, toPrint)
-	if err3 != nil {
+	if !ContainsAscii(inputText) {
+		toPrint = StringAscii("we accept just ASCII characters")
+	} else {
+		toPrint = StringAscii(inputText)
+	}
+	err = ASCIIARTTMPL.Execute(w, toPrint)
+	if err != nil {
 		error.InternalServerError(w, r)
 		return
 	}
@@ -80,6 +86,8 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 func ExportHandler(w http.ResponseWriter, r *http.Request) {
 	before_generate := r.FormValue("before-generate")
 	after_generate := r.FormValue("after-generate")
+	before_generate = strings.Replace(before_generate, "\r", "", -1)
+
 	banner := r.FormValue("banner")
 
 	var asciiStruct Art
